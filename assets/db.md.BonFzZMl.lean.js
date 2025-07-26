@@ -1,0 +1,1 @@
+import{_ as a,c as n,o as e,ah as i}from"./chunks/framework.C2PqkmK9.js";const g=JSON.parse('{"title":"数据库操作","description":"","frontmatter":{},"headers":[],"relativePath":"db.md","filePath":"db.md"}'),p={name:"db.md"};function l(t,s,d,c,h,o){return e(),n("div",null,s[0]||(s[0]=[i("",175)]))}const b=a(p,[["render",l]]);export{g as __pageData,b as default};

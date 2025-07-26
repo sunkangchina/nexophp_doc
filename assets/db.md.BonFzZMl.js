@@ -1,0 +1,312 @@
+import{_ as a,c as n,o as e,ah as i}from"./chunks/framework.C2PqkmK9.js";const g=JSON.parse('{"title":"数据库操作","description":"","frontmatter":{},"headers":[],"relativePath":"db.md","filePath":"db.md"}'),p={name:"db.md"};function l(t,s,d,c,h,o){return e(),n("div",null,s[0]||(s[0]=[i(`<h1 id="数据库操作" tabindex="-1">数据库操作 <a class="header-anchor" href="#数据库操作" aria-label="Permalink to “数据库操作”">​</a></h1><p>配置</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>/**</span></span>
+<span class="line"><span>* 数据库连接</span></span>
+<span class="line"><span>*/</span></span>
+<span class="line"><span>$config[&#39;db_name&#39;] = &#39;test&#39;; </span></span>
+<span class="line"><span>$config[&#39;db_host&#39;] = &#39;127.0.0.1&#39;;</span></span>
+<span class="line"><span>$config[&#39;db_user&#39;] = &#39;root&#39;;</span></span>
+<span class="line"><span>$config[&#39;db_pwd&#39;]  = &#39;111111&#39;;</span></span>
+<span class="line"><span>$config[&#39;db_port&#39;] = 3306;</span></span></code></pre></div><p>读库</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// 从库读库 </span></span>
+<span class="line"><span>$config[&#39;read_db_host&#39;] = &#39;127.0.0.1&#39;;</span></span>
+<span class="line"><span>$config[&#39;read_db_name&#39;] = [&#39;read2&#39;,&#39;read1&#39;];</span></span>
+<span class="line"><span>$config[&#39;read_db_user&#39;] = &#39;root&#39;;</span></span>
+<span class="line"><span>$config[&#39;read_db_pwd&#39;] = &#39;111111&#39;;</span></span>
+<span class="line"><span>$config[&#39;read_db_port&#39;] = 3306;</span></span></code></pre></div><p>在使用只读库时</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_active_read();</span></span></code></pre></div><p>切回默认数据库</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_active_default();</span></span></code></pre></div><h2 id="行锁" tabindex="-1">行锁 <a class="header-anchor" href="#行锁" aria-label="Permalink to “行锁”">​</a></h2><p>需要放在事务中</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_for_update($table,$id);</span></span></code></pre></div><h2 id="加" tabindex="-1">加+ <a class="header-anchor" href="#加" aria-label="Permalink to “加+”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>&quot;age[+]&quot; =&gt; 1</span></span></code></pre></div><h2 id="where条件" tabindex="-1">$where条件 <a class="header-anchor" href="#where条件" aria-label="Permalink to “$where条件”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>&#39;user_name[REGEXP]&#39; =&gt; &#39;[a-z0-9]*&#39;</span></span>
+<span class="line"><span>&#39;user_name[FIND_IN_SET]&#39;=&gt;(string)10</span></span>
+<span class="line"><span>&#39;user_name[RAW]&#39; =&gt; &#39;[a-z0-9]*&#39;</span></span></code></pre></div><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$where = [</span></span>
+<span class="line"><span>	//like查寻</span></span>
+<span class="line"><span>	&#39;product_num[~]&#39; =&gt; 379, </span></span>
+<span class="line"><span>	//等于查寻</span></span>
+<span class="line"><span>	&#39;product_num&#39; =&gt; 3669, </span></span>
+<span class="line"><span>	//大于查寻</span></span>
+<span class="line"><span>	&#39;id[&gt;]&#39; =&gt; 1,</span></span>
+<span class="line"><span>	&#39;id[&gt;=]&#39; =&gt; 1,</span></span>
+<span class="line"><span>	&#39;id[&lt;]&#39; =&gt; 1,</span></span>
+<span class="line"><span>	&#39;id[&lt;=]&#39; =&gt; 1,</span></span>
+<span class="line"><span>]; </span></span>
+<span class="line"><span>$where = []; </span></span>
+<span class="line"><span>$where[&#39;OR&#39;] = [</span></span>
+<span class="line"><span>	&#39;product_num[~]&#39;=&gt;379,</span></span>
+<span class="line"><span>	&#39;product_num[&gt;]&#39;=&gt;366,</span></span>
+<span class="line"><span>];</span></span>
+<span class="line"><span>$where[&#39;LIMIT&#39;] = 10;</span></span>
+<span class="line"><span>$where[&#39;ORDER&#39;] = [&#39;id&#39;=&gt;&#39;DESC&#39;];</span></span></code></pre></div><h1 id="or" tabindex="-1">OR <a class="header-anchor" href="#or" aria-label="Permalink to “OR”">​</a></h1><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>//(...  AND ...) OR (...  AND ...)</span></span>
+<span class="line"><span>&quot;OR #1&quot; =&gt; [</span></span>
+<span class="line"><span>    &quot;AND #2&quot; =&gt; $where,</span></span>
+<span class="line"><span>    &quot;AND #3&quot; =&gt; $or_where</span></span>
+<span class="line"><span>    ]</span></span>
+<span class="line"><span>];</span></span>
+<span class="line"><span>//(... OR  ...) AND (...  OR ...)</span></span>
+<span class="line"><span>&quot;AND #1&quot; =&gt; [</span></span>
+<span class="line"><span>    &quot;OR #2&quot; =&gt; $where,</span></span>
+<span class="line"><span>    &quot;OR #3&quot; =&gt; $or_where</span></span>
+<span class="line"><span>    ]</span></span>
+<span class="line"><span>];</span></span></code></pre></div><h2 id="where字段两个日期之间" tabindex="-1">where字段两个日期之间 <a class="header-anchor" href="#where字段两个日期之间" aria-label="Permalink to “where字段两个日期之间”">​</a></h2><p>字段是datetime类型</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$date1 = &#39;2022-11-01&#39;;</span></span>
+<span class="line"><span>$date2 = &#39;2022-12-14&#39;;</span></span>
+<span class="line"><span>db_between_date($field,$date1,$date2)</span></span></code></pre></div><h2 id="where-两个月份之间" tabindex="-1">where 两个月份之间 <a class="header-anchor" href="#where-两个月份之间" aria-label="Permalink to “where 两个月份之间”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$date1 = &#39;2022-11&#39;;</span></span>
+<span class="line"><span>$date2 = &#39;2022-12&#39;;</span></span>
+<span class="line"><span>db_between_month($field,$date1,$date2</span></span></code></pre></div><h2 id="查寻一条记录" tabindex="-1">查寻一条记录 <a class="header-anchor" href="#查寻一条记录" aria-label="Permalink to “查寻一条记录”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$res = db_get_one(&quot;products&quot;,&quot;*&quot;,$where);</span></span>
+<span class="line"><span>$res = db_get_one(&quot;products&quot;,$where);</span></span></code></pre></div><h2 id="所有记录" tabindex="-1">所有记录 <a class="header-anchor" href="#所有记录" aria-label="Permalink to “所有记录”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$res = db_get(&quot;products&quot;,&quot;*&quot;,$where);</span></span>
+<span class="line"><span>$res = db_get(&quot;products&quot;,$where);</span></span></code></pre></div><h2 id="分页" tabindex="-1">分页 <a class="header-anchor" href="#分页" aria-label="Permalink to “分页”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$res  = db_pager(&quot;products&quot;,&quot;*&quot;,$where);</span></span></code></pre></div><h2 id="使用原生方法" tabindex="-1">使用原生方法 <a class="header-anchor" href="#使用原生方法" aria-label="Permalink to “使用原生方法”">​</a></h2><p>原生方法将不会触发<code>action</code></p><p><a href="https://medoo.in/api/where" target="_blank" rel="noreferrer">https://medoo.in/api/where</a></p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$res = db()-&gt;select(&quot;products&quot;,[&#39;id&#39;],[]);</span></span></code></pre></div><h2 id="查寻某个字段" tabindex="-1">查寻某个字段 <a class="header-anchor" href="#查寻某个字段" aria-label="Permalink to “查寻某个字段”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$res  = db_get(&quot;qr_rule&quot;,&quot;qr_num&quot;,[&#39;GROUP&#39;=&gt;&#39;qr_num&#39;]);</span></span>
+<span class="line"><span>print_r($res);</span></span></code></pre></div><h2 id="写入记录" tabindex="-1">写入记录 <a class="header-anchor" href="#写入记录" aria-label="Permalink to “写入记录”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_insert($table, $data = [],$don_run_action = false)</span></span></code></pre></div><h2 id="更新记录" tabindex="-1">更新记录 <a class="header-anchor" href="#更新记录" aria-label="Permalink to “更新记录”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_update($table, $data = [], $where = [],$don_run_action = false)</span></span></code></pre></div><h2 id="取最小值" tabindex="-1">取最小值 <a class="header-anchor" href="#取最小值" aria-label="Permalink to “取最小值”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_get_min($table, $join  = &quot;*&quot;, $column = null, $where = null)</span></span></code></pre></div><p>其他一些如取最大值等</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_get_max</span></span>
+<span class="line"><span>db_get_count</span></span>
+<span class="line"><span>db_get_has</span></span>
+<span class="line"><span>db_get_rand</span></span>
+<span class="line"><span>db_get_sum</span></span>
+<span class="line"><span>db_get_avg</span></span></code></pre></div><h2 id="删除" tabindex="-1">删除 <a class="header-anchor" href="#删除" aria-label="Permalink to “删除”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_del($table, $where)</span></span></code></pre></div><h2 id="action" tabindex="-1">action <a class="header-anchor" href="#action" aria-label="Permalink to “action”">​</a></h2><h3 id="写入记录前" tabindex="-1">写入记录前 <a class="header-anchor" href="#写入记录前" aria-label="Permalink to “写入记录前”">​</a></h3><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>do_action(&quot;db_insert.$table.before&quot;, $data);</span></span>
+<span class="line"><span>do_action(&quot;db_save.$table.before&quot;, $data);</span></span></code></pre></div><h3 id="写入记录后" tabindex="-1">写入记录后 <a class="header-anchor" href="#写入记录后" aria-label="Permalink to “写入记录后”">​</a></h3><p>其中<code>$data</code>有 <code>id</code> 及 <code>data</code></p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>do_action(&quot;db_insert.$table.after&quot;, $action_data);</span></span>
+<span class="line"><span>do_action(&quot;db_save.$table.after&quot;, $action_data);</span></span></code></pre></div><p>数据格式</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$action_data = []; </span></span>
+<span class="line"><span>$action_data[&#39;id&#39;]    = $id;</span></span>
+<span class="line"><span>$action_data[&#39;data&#39;]  = $data;</span></span></code></pre></div><h3 id="更新记录前" tabindex="-1">更新记录前 <a class="header-anchor" href="#更新记录前" aria-label="Permalink to “更新记录前”">​</a></h3><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>do_action(&quot;db_update.$table.before&quot;, $data);</span></span>
+<span class="line"><span>do_action(&quot;db_save.$table.before&quot;, $data);</span></span></code></pre></div><h3 id="更新记录后" tabindex="-1">更新记录后 <a class="header-anchor" href="#更新记录后" aria-label="Permalink to “更新记录后”">​</a></h3><p>其中<code>$data</code>有 <code>id</code> <code>data</code> <code>where</code></p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>do_action(&quot;db_update.$table.after&quot;, $action_data);</span></span>
+<span class="line"><span>do_action(&quot;db_save.$table.after&quot;, $action_data);</span></span></code></pre></div><p>数据格式</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$action_data = [];</span></span>
+<span class="line"><span>$action_data[&#39;where&#39;] = $where; </span></span>
+<span class="line"><span>$action_data[&#39;id&#39;]    = $where[&#39;id&#39;] ?: &#39;&#39;;</span></span>
+<span class="line"><span>$action_data[&#39;data&#39;]  = $data;</span></span></code></pre></div><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>do_action(&quot;db_get_one.$table&quot;, $v);</span></span></code></pre></div><h2 id="删除前" tabindex="-1">删除前 <a class="header-anchor" href="#删除前" aria-label="Permalink to “删除前”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>do_action(&quot;db_del.$table.before&quot;, $where);</span></span>
+<span class="line"><span>do_action(&quot;db_del.$table.after&quot;, $where);</span></span></code></pre></div><h2 id="显示所有表名" tabindex="-1">显示所有表名 <a class="header-anchor" href="#显示所有表名" aria-label="Permalink to “显示所有表名”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>show_tables($table)</span></span></code></pre></div><h2 id="取表中字段" tabindex="-1">取表中字段 <a class="header-anchor" href="#取表中字段" aria-label="Permalink to “取表中字段”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>get_table_fields($table, $has_key  = true)</span></span></code></pre></div><h2 id="返回数据库允许的数据-传入其他字段自动忽略" tabindex="-1">返回数据库允许的数据，传入其他字段自动忽略 <a class="header-anchor" href="#返回数据库允许的数据-传入其他字段自动忽略" aria-label="Permalink to “返回数据库允许的数据，传入其他字段自动忽略”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_allow($table, $data)</span></span></code></pre></div><h2 id="显示数据库表结构-支持markdown格式" tabindex="-1">显示数据库表结构，支持markdown格式 <a class="header-anchor" href="#显示数据库表结构-支持markdown格式" aria-label="Permalink to “显示数据库表结构，支持markdown格式”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>database_tables($name = null, $show_markdown = false)</span></span></code></pre></div><h2 id="数组排序" tabindex="-1">数组排序 <a class="header-anchor" href="#数组排序" aria-label="Permalink to “数组排序”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>array_order_by($row,$order,SORT_DESC);</span></span></code></pre></div><h2 id="判断是json数据" tabindex="-1">判断是json数据 <a class="header-anchor" href="#判断是json数据" aria-label="Permalink to “判断是json数据”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>is_json($data)</span></span></code></pre></div><h2 id="sql查寻" tabindex="-1">SQL查寻 <a class="header-anchor" href="#sql查寻" aria-label="Permalink to “SQL查寻”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_query($sql, $raw = null)</span></span>
+<span class="line"><span>do_action(&quot;db_query&quot;, $all)</span></span></code></pre></div><p>其中<code>$sql</code>为<code>select * from table_name where user_id=:user_id</code></p><p><code>$raw</code> 为 <code>[&#39;:user_id&#39;=&gt;1]</code></p><h2 id="事务" tabindex="-1">事务 <a class="header-anchor" href="#事务" aria-label="Permalink to “事务”">​</a></h2><p>需要<code>inner db</code>支持</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_action(function()use($data)){</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>});</span></span></code></pre></div><h2 id="id锁" tabindex="-1">id锁 <a class="header-anchor" href="#id锁" aria-label="Permalink to “id锁”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_for_update($table,$id)</span></span></code></pre></div><h2 id="设置分页总记录数" tabindex="-1">设置分页总记录数 <a class="header-anchor" href="#设置分页总记录数" aria-label="Permalink to “设置分页总记录数”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_pager_count($nums = null)</span></span></code></pre></div><h2 id="连表查寻" tabindex="-1">连表查寻 <a class="header-anchor" href="#连表查寻" aria-label="Permalink to “连表查寻”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$data = db_pager(&quot;do_order&quot;,</span></span>
+<span class="line"><span>[&quot;[&gt;&lt;]do_mini_user&quot; =&gt; [&quot;uid&quot; =&gt; &quot;id&quot;]],</span></span>
+<span class="line"><span>[</span></span>
+<span class="line"><span>    &quot;do_order.id&quot;,</span></span>
+<span class="line"><span>    &quot;do_order.uid&quot;,</span></span>
+<span class="line"><span>    &quot;user&quot; =&gt; [</span></span>
+<span class="line"><span>        &quot;do_mini_user.nickName&quot;,</span></span>
+<span class="line"><span>        &quot;do_mini_user.avatarUrl&quot;,</span></span>
+<span class="line"><span>        &quot;do_mini_user.openid&quot;,</span></span>
+<span class="line"><span>    ]</span></span>
+<span class="line"><span>],</span></span>
+<span class="line"><span>$where);</span></span></code></pre></div><h2 id="db-get复杂查寻" tabindex="-1">db_get复杂查寻 <a class="header-anchor" href="#db-get复杂查寻" aria-label="Permalink to “db_get复杂查寻”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$lists = db_get(&#39;do_order&#39;, [ </span></span>
+<span class="line"><span>    &#39;count&#39; =&gt; &#39;COUNT(\`id\`)&#39;,</span><span> // 对应 select COUNT(\`id\`) as count</span></span>
+<span class="line"><span>    &#39;total&#39; =&gt; &#39;SUM(\`total_fee\`)&#39;,</span></span>
+<span class="line"><span>    &#39;date&#39;  =&gt; &quot;FROM_UNIXTIME(\`inserttime\`, &#39;%Y-%m-%d&#39;)&quot;</span></span>
+<span class="line"><span>],$where);</span></span></code></pre></div><h2 id="field-排序" tabindex="-1">field 排序 <a class="header-anchor" href="#field-排序" aria-label="Permalink to “field 排序”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>&#39;ORDER&#39;=&gt;[&#39;id&#39;=&gt;[1,2]]</span></span></code></pre></div><h2 id="跨库数据库事务" tabindex="-1">跨库数据库事务 <a class="header-anchor" href="#跨库数据库事务" aria-label="Permalink to “跨库数据库事务”">​</a></h2><p>调用方式</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>xa_db_action([</span></span>
+<span class="line"><span>  &#39;a&#39;=&gt;function(){</span></span>
+<span class="line"><span>    echo &quot;a&lt;br&gt;&quot;;</span></span>
+<span class="line"><span>    db_insert(&quot;config&quot;,[&#39;title&#39;=&gt;1]);</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  &#39;b&#39;=&gt;function(){</span></span>
+<span class="line"><span>    echo &quot;b&lt;br&gt;&quot;;</span></span>
+<span class="line"><span>    db_insert(&quot;config&quot;,[&#39;title&#39;=&gt;&#39;b&#39;]);</span></span>
+<span class="line"><span>    //抛出异常时也会回滚</span></span>
+<span class="line"><span>    //throw new Exception(&quot;错误&quot;);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>]);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$err = db_get_error();</span></span>
+<span class="line"><span>if($err) {</span></span>
+<span class="line"><span>    pr($err);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>其中 <code>a</code> <code>b</code>是数据库连接</p><p>配置数据库</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>new_db([</span></span>
+<span class="line"><span>  &#39;db_host&#39;=&gt;&quot;127.0.0.1&quot;,</span></span>
+<span class="line"><span>  &#39;db_name&#39;=&gt;&quot;test1&quot;,</span></span>
+<span class="line"><span>  &#39;db_user&#39;=&gt;&quot;root&quot;,</span></span>
+<span class="line"><span>  &#39;db_pwd&#39;=&gt;&quot;111111&quot;,</span></span>
+<span class="line"><span>  &#39;db_port&#39;=&gt;&quot;3306&quot;,</span></span>
+<span class="line"><span>],&#39;a&#39;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>new_db([</span></span>
+<span class="line"><span>  &#39;db_host&#39;=&gt;&quot;127.0.0.1&quot;,</span></span>
+<span class="line"><span>  &#39;db_name&#39;=&gt;&quot;test2&quot;,</span></span>
+<span class="line"><span>  &#39;db_user&#39;=&gt;&quot;root&quot;,</span></span>
+<span class="line"><span>  &#39;db_pwd&#39;=&gt;&quot;111111&quot;,</span></span>
+<span class="line"><span>  &#39;db_port&#39;=&gt;&quot;3306&quot;,</span></span>
+<span class="line"><span>],&#39;b&#39;);</span></span></code></pre></div><h2 id="修改表名" tabindex="-1">修改表名 <a class="header-anchor" href="#修改表名" aria-label="Permalink to “修改表名”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>add_action(&quot;db_table.a&quot;,function(&amp;$table){</span></span>
+<span class="line"><span>    $table = &#39;a_100&#39;;</span></span>
+<span class="line"><span>});</span></span></code></pre></div><h3 id="创建分区表-自动排除已有的" tabindex="-1">创建分区表,自动排除已有的 <a class="header-anchor" href="#创建分区表-自动排除已有的" aria-label="Permalink to “创建分区表,自动排除已有的”">​</a></h3><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_struct_table_range_auto(&#39;wordpress&#39;,&#39;my_table&#39;,[</span></span>
+<span class="line"><span>    &#39;2023-11&#39;,</span></span>
+<span class="line"><span>    &#39;2023-12&#39;,</span></span>
+<span class="line"><span>    &#39;2024-01&#39;,</span></span>
+<span class="line"><span>    &#39;2024-02&#39;,</span></span>
+<span class="line"><span>    &#39;2024-03&#39;,</span></span>
+<span class="line"><span>]);</span></span></code></pre></div><p>返回创建分区SQL</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_struct_table_range(&#39;my_table&#39;,[</span></span>
+<span class="line"><span>    &#39;2023-11&#39;,</span></span>
+<span class="line"><span>    &#39;2023-12&#39;,</span></span>
+<span class="line"><span>    &#39;2024-01&#39;,</span></span>
+<span class="line"><span>],&#39;created_at&#39;,&#39;p&#39;,true);</span></span></code></pre></div><h2 id="使用model" tabindex="-1">使用model <a class="header-anchor" href="#使用model" aria-label="Permalink to “使用model”">​</a></h2><p>验证规则</p><p><a href="https://github.com/vlucas/valitron" target="_blank" rel="noreferrer">https://github.com/vlucas/valitron</a></p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>&lt;?php   </span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>namespace model; </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class user extends \\model{ </span></span>
+<span class="line"><span>    protected $table = &#39;users&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    protected $field = [</span></span>
+<span class="line"><span>        &#39;name&#39;  =&gt; &#39;姓名&#39;,</span></span>
+<span class="line"><span>        &#39;phone&#39; =&gt; &#39;手机号&#39;,</span></span>
+<span class="line"><span>        &#39;email&#39; =&gt; &#39;邮件&#39;,</span></span>
+<span class="line"><span>    ];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    protected $validate = [</span></span>
+<span class="line"><span>        &#39;required&#39;=&gt;[</span></span>
+<span class="line"><span>            &#39;name&#39;,&#39;phone&#39;,&#39;email&#39;,</span></span>
+<span class="line"><span>        ],</span></span>
+<span class="line"><span>        &#39;email&#39;=&gt;[</span></span>
+<span class="line"><span>            [&#39;email&#39;],</span></span>
+<span class="line"><span>        ],</span></span>
+<span class="line"><span>        &#39;phonech&#39;=&gt;[</span></span>
+<span class="line"><span>            [&#39;phone&#39;]</span></span>
+<span class="line"><span>        ],</span></span>
+<span class="line"><span>        &#39;unique&#39;=&gt;[</span></span>
+<span class="line"><span>            [&#39;phone&#39;,],</span></span>
+<span class="line"><span>            [&#39;email&#39;,], </span></span>
+<span class="line"><span>        ]</span></span>
+<span class="line"><span>    ]; </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    protected $unique_message = [</span></span>
+<span class="line"><span>        &#39;手机号已存在&#39;,</span></span>
+<span class="line"><span>        &#39;邮件已存在&#39;,</span></span>
+<span class="line"><span>    ];</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 写入数据前</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function before_insert(&amp;$data){ </span></span>
+<span class="line"><span>        parent::before_insert($data);</span></span>
+<span class="line"><span>        $data[&#39;created_at&#39;] = now();</span></span>
+<span class="line"><span>        parent::before_insert($data);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>model事件，注意使用<code>parent::</code></p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 查寻前</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function beforeFind(&amp;$where){</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 查寻后</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function afterFind(&amp;$data){</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 写入数据前</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function beforeInsert(&amp;$data){</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 写入数据后</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function afterInsert($id){</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 更新数据前</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function beforeUpdate(&amp;$data,$where){</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 更新数据后</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function afterUpdate($row_count,$data,$where){</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 删除前</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function beforeDelete(&amp;$where)</span></span>
+<span class="line"><span>    {        </span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    /**</span></span>
+<span class="line"><span>    * 删除后</span></span>
+<span class="line"><span>    */</span></span>
+<span class="line"><span>    public function afterDelete($where)</span></span>
+<span class="line"><span>    {        </span></span>
+<span class="line"><span>    }</span></span></code></pre></div><p>字段映射</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>protected $field_ln = [</span></span>
+<span class="line"><span>    &#39;title&#39; =&gt; &#39;name&#39;, </span></span>
+<span class="line"><span>];</span></span></code></pre></div><p><code>name</code>是数据库中真实存在的字段,<code>title</code>是自己定义了字段。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;find([&#39;title[~]&#39;=&gt;&#39;test&#39;]);</span></span></code></pre></div><p>等同于</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;find([&#39;name[~]&#39;=&gt;&#39;test&#39;]);</span></span></code></pre></div><p>返回的记录中将同时有<code>name</code> <code>title</code></p><p>model查询</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;find($id) //返回一条记录 $id是int类型</span></span>
+<span class="line"><span>$model-&gt;find([&#39;name&#39;=&gt;&#39;t&#39;],$limit=1)  //返回一条记录</span></span>
+<span class="line"><span>$model-&gt;find([&#39;name&#39;=&gt;&#39;t&#39;])  //返回所有记录</span></span></code></pre></div><p>关联定义</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>class invoice_detail extends \\core\\sys\\model\\base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    protected $table = &#39;invoice_detail&#39;;</span></span>
+<span class="line"><span>    protected $has_one = [</span></span>
+<span class="line"><span>        &#39;detail_one&#39; =&gt; [invoice::class,&#39;invoice_id&#39;],</span></span>
+<span class="line"><span>    ];</span></span>
+<span class="line"><span>    protected $has_many = [</span></span>
+<span class="line"><span>        &#39;product_info&#39; =&gt; [invoice_product::class,&#39;product_num&#39;,&#39;product_num&#39;,[&#39;LIMIT&#39; =&gt; 2]]</span></span>
+<span class="line"><span>    ];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    public function after_find(&amp;$data)</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        unset($data[&#39;id&#39;]);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class invoice extends \\core\\sys\\model\\base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    protected $table = &#39;invoice&#39;;</span></span>
+<span class="line"><span>    protected $has_many = [</span></span>
+<span class="line"><span>        &#39;detail&#39; =&gt; [invoice_detail::class,&#39;invoice_id&#39;,&#39;id&#39;,[&#39;LIMIT&#39; =&gt; 2]]</span></span>
+<span class="line"><span>    ];</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class invoice_product extends \\core\\sys\\model\\base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    protected $table = &#39;invoice_products&#39;;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>默认并不会自动查寻关联数据，如果查寻关联数据</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$m = new yourmodelname();</span></span>
+<span class="line"><span>$m-&gt;relation()-&gt;find();</span></span></code></pre></div><p>insert</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;insert($data, $ignore_hook = false)</span></span></code></pre></div><p>update</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;update($data,$where = &#39;&#39;, $ignore_hook = false)</span></span></code></pre></div><p>pager</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;pager($join, $columns = null, $where = null, $ignore_hook = false)</span></span></code></pre></div><p>sum</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;sum($filed,$where = &#39;&#39;)</span></span></code></pre></div><p>count</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;count($where = &#39;&#39;)</span></span></code></pre></div><p>delete</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;del($where = &#39;&#39;, $ignore_hook = false)</span></span></code></pre></div><p>max</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;max($filed,$where = &#39;&#39;)</span></span></code></pre></div><p>min</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;min($filed,$where = &#39;&#39;)</span></span></code></pre></div><p>DISTINCT</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$res = $m-&gt;find([ </span></span>
+<span class="line"><span>    &#39;select&#39;=&gt;[&#39;@title&#39;,&quot;name2&quot; =&gt; db_raw(&quot;COUNT(DISTINCT &lt;title&gt;)&quot;),],</span></span>
+<span class="line"><span>    &#39;status&#39;=&gt;1,</span></span>
+<span class="line"><span>],$limit = &#39;&#39; ,true);</span></span></code></pre></div><p><code>select</code>数组中的<code>@title</code>是<code>GROUP BY</code></p><h2 id="数据库结构比较" tabindex="-1">数据库结构比较 <a class="header-anchor" href="#数据库结构比较" aria-label="Permalink to “数据库结构比较”">​</a></h2><p>生成数据库结构差量SQL</p><p><code>project_base</code>为基础结构，其他的的<code>project_user_*</code>为需要被同步的结构</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$sql = create_db_compare_sql([</span></span>
+<span class="line"><span>    &#39;db_host&#39; =&gt; &#39;127.0.0.1&#39;,</span></span>
+<span class="line"><span>    &#39;db_name&#39; =&gt; &#39;project_base&#39;,</span></span>
+<span class="line"><span>    &#39;db_user&#39; =&gt; &#39;root&#39;,</span></span>
+<span class="line"><span>    &#39;db_pwd&#39; =&gt; &#39;111111&#39;</span></span>
+<span class="line"><span>], [</span></span>
+<span class="line"><span>    &#39;project_user_&#39;,</span></span>
+<span class="line"><span>], $is_like = true);</span></span></code></pre></div><p>其中<code>$is_like</code>表示是否是<code>like</code>效果。</p><h2 id="回到上一个连接" tabindex="-1">回到上一个连接 <a class="header-anchor" href="#回到上一个连接" aria-label="Permalink to “回到上一个连接”">​</a></h2><p>在SAAS平台开发时，存在数据库切换的情况。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_active(&#39;default&#39;,true);</span></span>
+<span class="line"><span>//这里操作数据库</span></span>
+<span class="line"><span>db_active(&#39;main&#39;);</span></span>
+<span class="line"><span>//这里操作数据库</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//这时会回到default连接</span></span>
+<span class="line"><span>db_active_rollback();</span></span></code></pre></div><p>关键函数</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_active($name = &#39;default&#39;,$need_rollback_here = false)</span></span></code></pre></div><h2 id="表前缀" tabindex="-1">表前缀 <a class="header-anchor" href="#表前缀" aria-label="Permalink to “表前缀”">​</a></h2><p>设置表前缀</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_prefix(&#39;wp_&#39;);</span></span>
+<span class="line"><span>db_prefix(&#39;&#39;);</span></span></code></pre></div><p>获取表前缀</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_prefix();</span></span></code></pre></div><p>如果因为设置前缀导致有些表查寻有问题，可用<code>add_action</code></p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>add_action(&quot;db.table&quot;,function(&amp;$table){});</span></span></code></pre></div><h2 id="统一数据库错误处理" tabindex="-1">统一数据库错误处理 <a class="header-anchor" href="#统一数据库错误处理" aria-label="Permalink to “统一数据库错误处理”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>add_action(&#39;db.err&#39;,function($err){</span></span>
+<span class="line"><span>    //如果是字符串说明是链接失败，如果是数组说明是SQL错误</span></span>
+<span class="line"><span>});</span></span></code></pre></div><h2 id="model-tree" tabindex="-1">model tree <a class="header-anchor" href="#model-tree" aria-label="Permalink to “model tree”">​</a></h2><p>数组转成tree</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;array_to_tree($new_list, $pk = &#39;id&#39;, $pid = &#39;pid&#39;, $child = &#39;children&#39;, $root = 0, $my_id = &#39;&#39;)</span></span></code></pre></div><p>向上取递归</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;get_tree_up($id, $is_frist = false)</span></span></code></pre></div><p>向下递归</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;get_tree_id($id, $where = [], $get_field = &#39;id&#39;)</span></span></code></pre></div><h2 id="model分页复杂查寻" tabindex="-1">model分页复杂查寻 <a class="header-anchor" href="#model分页复杂查寻" aria-label="Permalink to “model分页复杂查寻”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$where = [];</span></span>
+<span class="line"><span>$select = [];</span></span>
+<span class="line"><span>$where[&#39;GROUP&#39;] = &#39;company_num&#39;;</span></span>
+<span class="line"><span>$select[] = &#39;customer_name&#39;;</span></span>
+<span class="line"><span>$select[] = &#39;company_num&#39;;</span></span>
+<span class="line"><span>$select[&#39;total&#39;] = &#39;COUNT(\`total_num\`)&#39;;</span></span>
+<span class="line"><span>$select[&#39;amount&#39;] = &#39;SUM(\`total_price\`)&#39;;</span></span>
+<span class="line"><span>$data = $this-&gt;invoice-&gt;pager($select, $where);</span></span></code></pre></div><p>GROUP BY 与 ORDER BY使用</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$wq = $this-&gt;input[&#39;wq&#39;];</span></span>
+<span class="line"><span>$date = $this-&gt;input[&#39;date&#39;];</span></span>
+<span class="line"><span>$date_start = $date[0];</span></span>
+<span class="line"><span>$date_end = $date[1];</span></span>
+<span class="line"><span>$where_string = &quot;&quot;;</span></span>
+<span class="line"><span>$query = [];</span></span>
+<span class="line"><span>$where = [];</span></span>
+<span class="line"><span>$select = [];</span></span>
+<span class="line"><span>$select[] = &#39;customer_name&#39;;</span></span>
+<span class="line"><span>$select[] = &#39;company_num&#39;;</span></span>
+<span class="line"><span>$select[] = &#39;@company_num&#39;;</span></span>
+<span class="line"><span>$select[&#39;total&#39;] = &#39;COUNT(\`total_num\`)&#39;;</span></span>
+<span class="line"><span>$select[&#39;amount&#39;] = &#39;SUM(\`total_price\`)&#39;;</span></span>
+<span class="line"><span>if($date_start) {</span></span>
+<span class="line"><span>    $where[&#39;created_at[&gt;=]&#39;] = $date_start . &quot; 00:00:01&quot;;</span></span>
+<span class="line"><span>    $where_string .= &quot; AND created_at &gt;= :created_at &quot;;</span></span>
+<span class="line"><span>    $query[&#39;:created_at&#39;] = $date_start . &quot; 00:00:01&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>if($date_end) {</span></span>
+<span class="line"><span>    $where[&#39;created_at[&lt;=]&#39;] = $date_end . &quot; 23:59:59&quot;;</span></span>
+<span class="line"><span>    $where_string .= &quot; AND created_at &lt;= :created_at_1 &quot;;</span></span>
+<span class="line"><span>    $query[&#39;:created_at_1&#39;] = $date_end . &quot; 23:59:59&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>if($wq) {</span></span>
+<span class="line"><span>    $or[&#39;customer_name[~]&#39;] = $wq;</span></span>
+<span class="line"><span>    $or[&#39;company_num[~]&#39;] = $wq;</span></span>
+<span class="line"><span>    $where[&#39;OR&#39;] = $or;</span></span>
+<span class="line"><span>    $where_string .= &quot; AND (customer_name LIKE :customer_name   OR company_num LIKE :company_num) &quot;;</span></span>
+<span class="line"><span>    $query[&#39;:customer_name&#39;] = &quot;%&quot; . $wq . &quot;%&quot;;</span></span>
+<span class="line"><span>    $query[&#39;:company_num&#39;] = &quot;%&quot; . $wq . &quot;%&quot;;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>//有GROUP BY ORDER BY时COUNT需要自行计算</span></span>
+<span class="line"><span>$sql = &quot;SELECT COUNT(DISTINCT(company_num)) AS total FROM invoice WHERE 1=1 &quot; . $where_string . &quot; LIMIT 1&quot;;</span></span>
+<span class="line"><span>$count = db_query($sql, $query);</span></span>
+<span class="line"><span>db_pager_count($count[0][&#39;total&#39;]);</span></span>
+<span class="line"><span>$where[&#39;ORDER&#39;] = [&#39;amount&#39; =&gt; &#39;DESC&#39;];</span></span>
+<span class="line"><span>$where[&#39;GROUP&#39;] = &#39;company_num&#39;;</span></span>
+<span class="line"><span>$new_where = $where;</span></span>
+<span class="line"><span>$new_where[&#39;select&#39;] = $select;</span></span>
+<span class="line"><span>$data = $this-&gt;invoice-&gt;pager($new_where);</span></span></code></pre></div><h2 id="group-by-多字段导致total数量不对" tabindex="-1">GROUP BY 多字段导致total数量不对 <a class="header-anchor" href="#group-by-多字段导致total数量不对" aria-label="Permalink to “GROUP BY 多字段导致total数量不对”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$group_by = &quot;product_num,base_name&quot;;</span></span>
+<span class="line"><span>$sql = &quot;select count(id) as total from (select * from &quot;.$table.&quot; GROUP BY &quot;.$group_by.&quot;) as wms&quot;;</span></span>
+<span class="line"><span>$res  = db_query($sql,[]);</span></span>
+<span class="line"><span>$total = $res[0][&#39;total&#39;]; </span></span>
+<span class="line"><span>$all[&#39;total&#39;] = $total;</span></span></code></pre></div>`,175)]))}const b=a(p,[["render",l]]);export{g as __pageData,b as default};

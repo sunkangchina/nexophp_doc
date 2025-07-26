@@ -1,0 +1,1 @@
+import{_ as a,c as n,o as s,ah as d}from"./chunks/framework.C2PqkmK9.js";const g=JSON.parse('{"title":"admin.setting.form","description":"","frontmatter":{},"headers":[],"relativePath":"action.md","filePath":"action.md"}'),e={name:"action.md"};function l(p,t,i,r,o,c){return s(),n("div",null,t[0]||(t[0]=[d("",7)]))}const b=a(e,[["render",l]]);export{g as __pageData,b as default};
