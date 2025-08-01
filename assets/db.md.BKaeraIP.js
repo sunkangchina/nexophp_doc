@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>数据库操作 | NexoPHP</title>
-    <meta name="description" content="NexoPHP 是一个基于 PHP 8.x 版本的框架，它的目标是为 PHP 开发者提供一个简单、快速、安全的软件开发框架">
-    <meta name="generator" content="VitePress v2.0.0-alpha.8">
-    <link rel="preload stylesheet" href="/assets/style.CwvA7jgV.css" as="style">
-    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
-    
-    <script type="module" src="/assets/app.DPBnOuKf.js"></script>
-    <link rel="modulepreload" href="/assets/chunks/theme.DZCyCMz_.js">
-    <link rel="modulepreload" href="/assets/chunks/framework.C2PqkmK9.js">
-    <link rel="modulepreload" href="/assets/db.md.BKaeraIP.lean.js">
-    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
-    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
-  </head>
-  <body>
-    <div id="app"><div class="Layout" data-v-5e06b97a><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5e06b97a data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-0ae64501><div class="wrapper" data-v-0ae64501><div class="container" data-v-0ae64501><div class="title" data-v-0ae64501><div class="VPNavBarTitle" data-v-0ae64501 data-v-1e38c6bc><a class="title" href="/" data-v-1e38c6bc><!--[--><!--]--><!----><span data-v-1e38c6bc>NexoPHP</span><!--[--><!--]--></a></div></div><div class="content" data-v-0ae64501><div class="content-body" data-v-0ae64501><!--[--><!--]--><div class="VPNavBarSearch search" data-v-0ae64501><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索文档"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">搜索文档</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-0ae64501 data-v-39714824><span id="main-nav-aria-label" class="visually-hidden" data-v-39714824> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/home.html" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>入门</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/guide.html" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>进阶</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink active" href="/db.html" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>数据库</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/fun.html" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>函数</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/action.html" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>Action</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/module.html" tabindex="0" data-v-39714824 data-v-e56f3d57><!--[--><span data-v-e56f3d57>模块</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-0ae64501 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><!----><div class="VPFlyout VPNavBarExtra extra" data-v-0ae64501 data-v-bb2aa2f0 data-v-3ab3deac><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-3ab3deac><span class="vpi-more-horizontal icon" data-v-3ab3deac></span></button><div class="menu" data-v-3ab3deac><div class="VPMenu" data-v-3ab3deac data-v-c9afd7f1><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><!----><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-0ae64501 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-0ae64501><div class="divider-line" data-v-0ae64501></div></div></div><!----></header><div class="VPLocalNav empty fixed" data-v-5e06b97a data-v-e30e5487><div class="container" data-v-e30e5487><!----><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-e30e5487 data-v-5fabb9ca><button data-v-5fabb9ca>Return to top</button><!----></div></div></div><!----><div class="VPContent" id="VPContent" data-v-5e06b97a data-v-aff0b8d7><div class="VPDoc has-aside" data-v-aff0b8d7 data-v-7011f0d8><!--[--><!--]--><div class="container" data-v-7011f0d8><div class="aside" data-v-7011f0d8><div class="aside-curtain" data-v-7011f0d8></div><div class="aside-container" data-v-7011f0d8><div class="aside-content" data-v-7011f0d8><div class="VPDocAside" data-v-7011f0d8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-60d5052e><div class="content" data-v-60d5052e><div class="outline-marker" data-v-60d5052e></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-60d5052e> </div><ul class="VPDocOutlineItem root" data-v-60d5052e data-v-2d0bdf9b><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-7011f0d8><div class="content-container" data-v-7011f0d8><!--[--><!--]--><main class="main" data-v-7011f0d8><div style="position:relative;" class="vp-doc _db" data-v-7011f0d8><div><h1 id="数据库操作" tabindex="-1">数据库操作 <a class="header-anchor" href="#数据库操作" aria-label="Permalink to “数据库操作”">​</a></h1><p>配置</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>/**</span></span>
+import{_ as a,c as n,o as e,ah as i}from"./chunks/framework.C2PqkmK9.js";const g=JSON.parse('{"title":"数据库操作","description":"","frontmatter":{},"headers":[],"relativePath":"db.md","filePath":"db.md","lastUpdated":1754013810000}'),p={name:"db.md"};function l(t,s,d,c,h,o){return e(),n("div",null,s[0]||(s[0]=[i(`<h1 id="数据库操作" tabindex="-1">数据库操作 <a class="header-anchor" href="#数据库操作" aria-label="Permalink to “数据库操作”">​</a></h1><p>配置</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>/**</span></span>
 <span class="line"><span>* 数据库连接</span></span>
 <span class="line"><span>*/</span></span>
 <span class="line"><span>$config[&#39;db_name&#39;] = &#39;test&#39;; </span></span>
@@ -96,9 +77,9 @@
 <span class="line"><span>    ]</span></span>
 <span class="line"><span>],</span></span>
 <span class="line"><span>$where);</span></span></code></pre></div><h2 id="db-get复杂查寻" tabindex="-1">db_get复杂查寻 <a class="header-anchor" href="#db-get复杂查寻" aria-label="Permalink to “db_get复杂查寻”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$lists = db_get(&#39;do_order&#39;, [ </span></span>
-<span class="line"><span>    &#39;count&#39; =&gt; &#39;COUNT(`id`)&#39;,</span><span> // 对应 select COUNT(`id`) as count</span></span>
-<span class="line"><span>    &#39;total&#39; =&gt; &#39;SUM(`total_fee`)&#39;,</span></span>
-<span class="line"><span>    &#39;date&#39;  =&gt; &quot;FROM_UNIXTIME(`inserttime`, &#39;%Y-%m-%d&#39;)&quot;</span></span>
+<span class="line"><span>    &#39;count&#39; =&gt; &#39;COUNT(\`id\`)&#39;,</span><span> // 对应 select COUNT(\`id\`) as count</span></span>
+<span class="line"><span>    &#39;total&#39; =&gt; &#39;SUM(\`total_fee\`)&#39;,</span></span>
+<span class="line"><span>    &#39;date&#39;  =&gt; &quot;FROM_UNIXTIME(\`inserttime\`, &#39;%Y-%m-%d&#39;)&quot;</span></span>
 <span class="line"><span>],$where);</span></span></code></pre></div><h2 id="field-排序" tabindex="-1">field 排序 <a class="header-anchor" href="#field-排序" aria-label="Permalink to “field 排序”">​</a></h2><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>&#39;ORDER&#39;=&gt;[&#39;id&#39;=&gt;[1,2]]</span></span></code></pre></div><h2 id="跨库数据库事务" tabindex="-1">跨库数据库事务 <a class="header-anchor" href="#跨库数据库事务" aria-label="Permalink to “跨库数据库事务”">​</a></h2><p>调用方式</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>xa_db_action([</span></span>
 <span class="line"><span>  &#39;a&#39;=&gt;function(){</span></span>
 <span class="line"><span>    echo &quot;a&lt;br&gt;&quot;;</span></span>
@@ -145,7 +126,7 @@
 <span class="line"><span> </span></span>
 <span class="line"><span>namespace model; </span></span>
 <span class="line"><span></span></span>
-<span class="line"><span>class user extends \model{ </span></span>
+<span class="line"><span>class user extends \\model{ </span></span>
 <span class="line"><span>    protected $table = &#39;users&#39;;</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>    protected $field = [</span></span>
@@ -231,7 +212,7 @@
 <span class="line"><span>    &#39;title&#39; =&gt; &#39;name&#39;, </span></span>
 <span class="line"><span>];</span></span></code></pre></div><p><code>name</code>是数据库中真实存在的字段,<code>title</code>是自己定义了字段。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;find([&#39;title[~]&#39;=&gt;&#39;test&#39;]);</span></span></code></pre></div><p>等同于</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;find([&#39;name[~]&#39;=&gt;&#39;test&#39;]);</span></span></code></pre></div><p>返回的记录中将同时有<code>name</code> <code>title</code></p><p>model查询</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$model-&gt;find($id) //返回一条记录 $id是int类型</span></span>
 <span class="line"><span>$model-&gt;find([&#39;name&#39;=&gt;&#39;t&#39;],$limit=1)  //返回一条记录</span></span>
-<span class="line"><span>$model-&gt;find([&#39;name&#39;=&gt;&#39;t&#39;])  //返回所有记录</span></span></code></pre></div><p>关联定义</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>class invoice_detail extends \core\sys\model\base</span></span>
+<span class="line"><span>$model-&gt;find([&#39;name&#39;=&gt;&#39;t&#39;])  //返回所有记录</span></span></code></pre></div><p>关联定义</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>class invoice_detail extends \\core\\sys\\model\\base</span></span>
 <span class="line"><span>{</span></span>
 <span class="line"><span>    protected $table = &#39;invoice_detail&#39;;</span></span>
 <span class="line"><span>    protected $has_one = [</span></span>
@@ -247,7 +228,7 @@
 <span class="line"><span>    }</span></span>
 <span class="line"><span>}</span></span>
 <span class="line"><span></span></span>
-<span class="line"><span>class invoice extends \core\sys\model\base</span></span>
+<span class="line"><span>class invoice extends \\core\\sys\\model\\base</span></span>
 <span class="line"><span>{</span></span>
 <span class="line"><span>    protected $table = &#39;invoice&#39;;</span></span>
 <span class="line"><span>    protected $has_many = [</span></span>
@@ -255,7 +236,7 @@
 <span class="line"><span>    ];</span></span>
 <span class="line"><span>}</span></span>
 <span class="line"><span></span></span>
-<span class="line"><span>class invoice_product extends \core\sys\model\base</span></span>
+<span class="line"><span>class invoice_product extends \\core\\sys\\model\\base</span></span>
 <span class="line"><span>{</span></span>
 <span class="line"><span>    protected $table = &#39;invoice_products&#39;;</span></span>
 <span class="line"><span>}</span></span></code></pre></div><p>默认并不会自动查寻关联数据，如果查寻关联数据</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$m = new yourmodelname();</span></span>
@@ -283,8 +264,8 @@
 <span class="line"><span>$where[&#39;GROUP&#39;] = &#39;company_num&#39;;</span></span>
 <span class="line"><span>$select[] = &#39;customer_name&#39;;</span></span>
 <span class="line"><span>$select[] = &#39;company_num&#39;;</span></span>
-<span class="line"><span>$select[&#39;total&#39;] = &#39;COUNT(`total_num`)&#39;;</span></span>
-<span class="line"><span>$select[&#39;amount&#39;] = &#39;SUM(`total_price`)&#39;;</span></span>
+<span class="line"><span>$select[&#39;total&#39;] = &#39;COUNT(\`total_num\`)&#39;;</span></span>
+<span class="line"><span>$select[&#39;amount&#39;] = &#39;SUM(\`total_price\`)&#39;;</span></span>
 <span class="line"><span>$data = $this-&gt;invoice-&gt;pager($select, $where);</span></span></code></pre></div><p>GROUP BY 与 ORDER BY使用</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$wq = $this-&gt;input[&#39;wq&#39;];</span></span>
 <span class="line"><span>$date = $this-&gt;input[&#39;date&#39;];</span></span>
 <span class="line"><span>$date_start = $date[0];</span></span>
@@ -296,8 +277,8 @@
 <span class="line"><span>$select[] = &#39;customer_name&#39;;</span></span>
 <span class="line"><span>$select[] = &#39;company_num&#39;;</span></span>
 <span class="line"><span>$select[] = &#39;@company_num&#39;;</span></span>
-<span class="line"><span>$select[&#39;total&#39;] = &#39;COUNT(`total_num`)&#39;;</span></span>
-<span class="line"><span>$select[&#39;amount&#39;] = &#39;SUM(`total_price`)&#39;;</span></span>
+<span class="line"><span>$select[&#39;total&#39;] = &#39;COUNT(\`total_num\`)&#39;;</span></span>
+<span class="line"><span>$select[&#39;amount&#39;] = &#39;SUM(\`total_price\`)&#39;;</span></span>
 <span class="line"><span>if($date_start) {</span></span>
 <span class="line"><span>    $where[&#39;created_at[&gt;=]&#39;] = $date_start . &quot; 00:00:01&quot;;</span></span>
 <span class="line"><span>    $where_string .= &quot; AND created_at &gt;= :created_at &quot;;</span></span>
@@ -328,8 +309,4 @@
 <span class="line"><span>$sql = &quot;select count(id) as total from (select * from &quot;.$table.&quot; GROUP BY &quot;.$group_by.&quot;) as wms&quot;;</span></span>
 <span class="line"><span>$res  = db_query($sql,[]);</span></span>
 <span class="line"><span>$total = $res[0][&#39;total&#39;]; </span></span>
-<span class="line"><span>$all[&#39;total&#39;] = $total;</span></span></code></pre></div></div></div></main><footer class="VPDocFooter" data-v-7011f0d8 data-v-e257564d><!--[--><!--]--><div class="edit-info" data-v-e257564d><div class="edit-link" data-v-e257564d><a class="VPLink link vp-external-link-icon no-icon edit-link-button" href="https://github.com/nexophp/nexophp" target="_blank" rel="noreferrer" data-v-e257564d><!--[--><span class="vpi-square-pen edit-link-icon" data-v-e257564d></span> 在 GitHub 上编辑此页面<!--]--></a></div><div class="last-updated" data-v-e257564d><p class="VPLastUpdated" data-v-e257564d data-v-e98dd255>最后更新于: <time datetime="2025-08-01T02:03:30.000Z" data-v-e98dd255></time></p></div></div><!----></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><!--]--></div></div>
-    <script>window.__VP_HASH_MAP__=JSON.parse("{\"action.md\":\"CH-_5CNj\",\"db.md\":\"BKaeraIP\",\"fun.md\":\"CGGq2mTY\",\"guide.md\":\"BaoAUaJn\",\"home.md\":\"DiwVHpdc\",\"index.md\":\"CCPmL1cy\",\"module.md\":\"Cj0kaa1L\",\"route.md\":\"DBxN08r4\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"NexoPHP\",\"description\":\"NexoPHP 是一个基于 PHP 8.x 版本的框架，它的目标是为 PHP 开发者提供一个简单、快速、安全的软件开发框架\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"nav\":[{\"text\":\"首页\",\"link\":\"/\"},{\"text\":\"入门\",\"link\":\"/home\"},{\"text\":\"进阶\",\"link\":\"/guide\"},{\"text\":\"数据库\",\"link\":\"/db\"},{\"text\":\"函数\",\"link\":\"/fun\"},{\"text\":\"Action\",\"link\":\"/action\"},{\"text\":\"模块\",\"link\":\"/module\"}],\"sidebar\":\"auto\",\"outline\":{\"level\":[1,2],\"label\":\" \"},\"sidebarMenuCollapsed\":true,\"docFooter\":{\"prev\":\"上一页\",\"next\":\"下一页\"},\"editLink\":{\"pattern\":\"https://github.com/nexophp/nexophp\",\"text\":\"在 GitHub 上编辑此页面\"},\"lastUpdated\":{\"text\":\"最后更新于\",\"formatOptions\":{\"dateStyle\":\"short\",\"timeStyle\":\"medium\"}},\"search\":{\"provider\":\"local\",\"options\":{\"locales\":{\"root\":{\"translations\":{\"button\":{\"buttonText\":\"搜索文档\",\"buttonAriaLabel\":\"搜索文档\"},\"modal\":{\"noResultsText\":\"无法找到相关结果\",\"resetButtonTitle\":\"清除查询条件\",\"footer\":{\"selectText\":\"选择\",\"navigateText\":\"切换\",\"closeText\":\"关闭\"}}}}}}}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false,\"additionalConfig\":{}}");</script>
-    
-  </body>
-</html>
+<span class="line"><span>$all[&#39;total&#39;] = $total;</span></span></code></pre></div>`,175)]))}const b=a(p,[["render",l]]);export{g as __pageData,b as default};

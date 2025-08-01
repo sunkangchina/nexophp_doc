@@ -1,0 +1,35 @@
+import{_ as a,c as n,o as s,ah as d}from"./chunks/framework.C2PqkmK9.js";const g=JSON.parse('{"title":"admin.setting.form","description":"","frontmatter":{},"headers":[],"relativePath":"action.md","filePath":"action.md","lastUpdated":1754035467000}'),e={name:"action.md"};function l(i,t,p,r,o,c){return s(),n("div",null,t[0]||(t[0]=[d(`<p>Action</p><table tabindex="0"><thead><tr><th>名称</th><th>参数</th><th>说明</th></tr></thead><tbody><tr><td>index</td><td></td><td>网站首页</td></tr><tr><td>$module.$controller.$action</td><td>控制器init</td><td>控制器初始化</td></tr><tr><td>$module.$controller.$action.view</td><td>调用view函数后</td><td>调用view函数后</td></tr><tr><td>view.start</td><td></td><td>视图开始</td></tr><tr><td>view.end</td><td></td><td>视图结束</td></tr><tr><td>remove_admin_menu</td><td>[&#39;cart&#39;]</td><td>移除后台菜单</td></tr><tr><td>admin_menu</td><td>$menu</td><td>后台菜单</td></tr><tr><td>mime</td><td>[&#39;jpg&#39;,&#39;png&#39;]</td><td>扩展mime类型</td></tr><tr><td>login_type</td><td>[&#39;username&#39; =&gt; lang(&#39;用户名登录&#39;)]</td><td>登录方式</td></tr><tr><td>bind_account</td><td>查看/admin/user-bind</td><td>绑定账号</td></tr><tr><td>admin.change.password</td><td>$new_pwd</td><td>管理员修改密码</td></tr><tr><td>header_right</td><td></td><td></td></tr><tr><td>admin_tags</td><td>$admin_tags <br> [&#39;admin&#39;=&gt;[&#39;color&#39;=&gt;&#39;green&#39;,&#39;title&#39;=&gt;lang(&#39;admin_user&#39;),]]</td><td>管理员tag显示</td></tr><tr><td>access_deny</td><td></td><td>无权限访问</td></tr><tr><td>admin.welcome.index</td><td></td><td>后台首页</td></tr><tr><td>AppController.init</td><td></td><td>基类控制器HOOK</td></tr><tr><td>admin.setting.form</td><td></td><td>后台设置表单</td></tr><tr><td>timezones</td><td>数组 [&#39;Asia/Shanghai&#39; =&gt; &#39;中国标准时间 (北京)&#39;]</td><td>设置时区</td></tr><tr><td>view.$module.$controller.$action</td><td>$data</td><td>视图显示前</td></tr><tr><td>lang</td><td>$data 有 name value file_name <br>如data中包含key为return的值时将阻止翻译</td><td>多语言</td></tr><tr><td>数据库</td><td></td><td></td></tr><tr><td>db_insert.$table.before</td><td>$data</td><td>写入记录前</td></tr><tr><td>db_save.$table.before</td><td>$data</td><td>写入记录前</td></tr><tr><td>db_insert.$table.after</td><td>$data 有 id data</td><td>写入记录后</td></tr><tr><td>db_save.$table.after</td><td>$data 有 id data</td><td>写入记录后</td></tr><tr><td>db_update.$table.before</td><td></td><td>更新记录前</td></tr><tr><td>db_save.$table.before</td><td></td><td>更新记录前</td></tr><tr><td>db_insert.$table.after</td><td>$data 有 id data where</td><td>更新记录后</td></tr><tr><td>db_save.$table.after</td><td>$data 有 id data where</td><td>更新记录后</td></tr><tr><td>db_del.$table.before</td><td>$where</td><td>删除前</td></tr><tr><td>db_del.$table.after</td><td>$where</td><td>删除前</td></tr></tbody></table><p>删除菜单</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>add_action(&#39;remove_admin_menu&#39;,function(&amp;$remove_menu){</span></span>
+<span class="line"><span>    $remove_menu = [&#39;webpos&#39;];</span></span>
+<span class="line"><span>});</span></span></code></pre></div><p>数据库如不需要触发Action可用以下方法</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>db_insert($table, $data = [], $don_run_action = true) </span></span>
+<span class="line"><span>db_update($table, $data = [], $where = [], $don_run_action = true)</span></span>
+<span class="line"><span>db_delete($table, $where = [], $don_run_action = true)</span></span></code></pre></div><h1 id="admin-setting-form" tabindex="-1">admin.setting.form <a class="header-anchor" href="#admin-setting-form" aria-label="Permalink to “admin.setting.form”">​</a></h1><p>演示代码</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>&lt;div class=&quot;mb-4 mt-4&quot;&gt;</span></span>
+<span class="line"><span>    &lt;h6 class=&quot;fw-bold mb-3 border-bottom pb-2&quot;&gt;</span></span>
+<span class="line"><span>        &lt;i class=&quot;bi bi-display me-2&quot;&gt;&lt;/i&gt;&lt;?=lang(&#39;显示设置（修改颜色需刷新页面）&#39;)?&gt;</span></span>
+<span class="line"><span>    &lt;/h6&gt;</span></span>
+<span class="line"><span>    &lt;div class=&quot;row mb-3&quot;&gt;</span></span>
+<span class="line"><span>        &lt;div class=&quot;col-md-3&quot;&gt;</span></span>
+<span class="line"><span>            &lt;label class=&quot;form-label&quot;&gt;&lt;?=lang(&#39;菜单背景颜色&#39;)?&gt;&lt;/label&gt;</span></span>
+<span class="line"><span>            &lt;input</span></span>
+<span class="line"><span>                type=&quot;color&quot;</span></span>
+<span class="line"><span>                class=&quot;form-control form-control-color&quot;</span></span>
+<span class="line"><span>                v-model=&quot;form.menu_bg&quot; </span></span>
+<span class="line"><span>                title=&quot;&quot;&gt;</span></span>
+<span class="line"><span>        &lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;div class=&quot;col-md-3&quot;&gt;</span></span>
+<span class="line"><span>            &lt;label class=&quot;form-label&quot;&gt;&lt;?=lang(&#39;菜单选中背景颜色&#39;)?&gt;&lt;/label&gt;</span></span>
+<span class="line"><span>            &lt;input</span></span>
+<span class="line"><span>                type=&quot;color&quot;</span></span>
+<span class="line"><span>                class=&quot;form-control form-control-color&quot;</span></span>
+<span class="line"><span>                v-model=&quot;form.menu_active&quot; </span></span>
+<span class="line"><span>                title=&quot;&quot;&gt;</span></span>
+<span class="line"><span>        &lt;/div&gt;</span></span>
+<span class="line"><span>        &lt;div class=&quot;col-md-3&quot;&gt;</span></span>
+<span class="line"><span>            &lt;label class=&quot;form-label&quot;&gt;&lt;?=lang(&#39;菜单选中文字颜色&#39;)?&gt;&lt;/label&gt;</span></span>
+<span class="line"><span>            &lt;input</span></span>
+<span class="line"><span>                type=&quot;color&quot;</span></span>
+<span class="line"><span>                class=&quot;form-control form-control-color&quot;</span></span>
+<span class="line"><span>                v-model=&quot;form.menu_color_active&quot; </span></span>
+<span class="line"><span>                title=&quot;&quot;&gt;</span></span>
+<span class="line"><span>        &lt;/div&gt;</span></span>
+<span class="line"><span>    &lt;/div&gt; </span></span>
+<span class="line"><span>&lt;/div&gt;</span></span></code></pre></div>`,9)]))}const m=a(e,[["render",l]]);export{g as __pageData,m as default};
